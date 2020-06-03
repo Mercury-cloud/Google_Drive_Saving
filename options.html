@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checker Plus for Google Drive&trade; - Options</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	
+	<script src="js/polymer-css.js"></script>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/extensionCommon.js"></script>
+	<script src="js/checkerPlusForDrive.js"></script>
+
+	<script src="js/options.js"></script>
+	
+	<style>
+		body {font-size:16px;overflow-y:scroll;opacity:1;transition:opacity 0.15s ease-in-out}
+		body[unresolved2] {opacity:0}
+
+		#middle {padding:30px 10px}
+	
+		.hide {display:none}
+
+		.help {cursor:pointer;color:#ccc !important;transition:color 0.1s ease-in}
+		.help:hover {color:gray !important}
+		
+		[mustDonate] {opacity:0.4;transition:opacity 0.1s ease-in}
+		[mustDonate]:hover {opacity:1}
+		
+		h3 {padding-top:10px}
+		
+		paper-radio-button {display:block;padding:8px 0 !important}
+		paper-radio-group {display:block;margin-bottom:20px}
+		
+		#desktopNotifications paper-radio-button {display:block}
+		
+		#buttonIcons paper-radio-button {display:inline-block;margin-right:40px}
+		
+  		#mutedFiles {display:inline-block;margin:0 0 0 20px;padding:0 0 0 5px}
+  		
+  		.testButton {background-color:#F7F7F7;border-radius:50%;transition:background-color 0.1s ease-in;margin:10px 0 0 15px}
+	</style>
+	
+  </head>
+<body unresolved unresolved2 class="fullbleed layout vertical">
+
+	<paper-spinner id="spinner" style="z-index:10;position:fixed;left:49%;top:49%" active hidden></paper-spinner>
+	<app-header-layout>
+		<app-header slot="header" fixed post-effects="waterfall">
+			<app-toolbar>
+				<img id="logo" src="images/48-drive-white.png" style="vertical-align:middle"/>
+				<div main-title><a class="inherit" href="https://jasonsavard.com?ref=DriveOptionsTitle">Checker Plus for Google Drive</a></div>
+				<paper-button id="version">version</paper-button>
+				<a class="inherit" href="https://jasonsavard.com/wiki/Checker_Plus_for_Google_Drive_changelog?ref=DriveOptions"><paper-button><span msg="changelog"></span></paper-button></a>
+				<a class="inherit" href="contribute.html"><paper-button><span msg="contribute"></span></paper-button></a>
+				<a class="inherit" href="https://jasonsavard.com/wiki/Checker_Plus_for_Google_Drive?ref=DriveOptions"><paper-button><span msg="help"></span></paper-button></a>
+			</app-toolbar>
+		</app-header>
+		<div id="middle">
+			<h3 style="margin-top:0;padding-top:0" msg="buttonIcon">Button icon</h3>
+			<paper-radio-group id="buttonIcons" storage="buttonIcon" mustDonate>
+				<paper-radio-button name="default"><img src="images/buttonIcons/default.png" /></paper-radio-button>
+				<paper-radio-button name="color"><img src="images/buttonIcons/color.png" /></paper-radio-button>
+				<paper-radio-button name="black"><img src="images/buttonIcons/black.png" /></paper-radio-button>
+			</paper-radio-group>
+
+			<h3 style="margin-top:20px;padding-top:0" msg="desktopNotificationsForModifiedFiles">Desktop notifications for new or modified files</h3>
+			<paper-radio-group id="desktopNotifications" storage="desktopNotifications">
+				<paper-radio-button name="none"><span msg="noNotifications">Nonotifications</span></paper-radio-button>
+				<paper-radio-button name="optIn"><span msg="notificationsForFoldersIChoose">Show notifications for files <b msg="notificationsForFoldersIChoose2">folders I choose</b></span>
+					<a class="help inherit" style="margin-left:5px" target="_blank" href="https://jasonsavard.com/wiki/File_notifications?ref=DriveOptions">
+						<iron-icon icon="help"></iron-icon>
+					</a>
+				</paper-radio-button>
+				<paper-radio-button name="optOut"><span msg="notificationsForAllFilesExcept">Show notifications for <b msg="notificationsForAllFilesExcept2">all</b> files except folders I choose</span></paper-radio-button>
+			</paper-radio-group>
+
+			<div class="layout vertical notificationSubOptions">
+				<paper-checkbox id="restrictToMyDrive" storage="restrictToMyDrive" msg="onlyIncludeFilesAddedToMyDrive">Only include notifications for files added to My Drive</paper-checkbox>
+				<paper-checkbox id="showImagesInNotifications" storage="showImagesInNotifications" mustDonate msg="showImagePreviewInNotifications"
+				 chrome-only>Show image preview in notifications</paper-checkbox>
+				<paper-checkbox id="silentNotifications" storage="silentNotifications" msg="silentNotifications">silentNotifications</paper-checkbox>
+				<paper-checkbox id="showRevisions" msg="seeRevisions" chrome-only>showRevisions</paper-checkbox>
+				<paper-checkbox id="showOwnModifications" storage="showOwnModifications" msg="showOwnModifications">showOwnModifications</paper-checkbox>
+				<paper-checkbox id="showAnonymousModifications" storage="showAnonymousModifications" msg="showAnonymousModifications">showAnonymousModifications</paper-checkbox>
+			</div>
+
+			<!--div mustDonate>
+				<paper-checkbox id="showImagesInPopup" storage="showImagesInPopup">Show image preview when hovering over files</paper-checkbox> <div id="imagePreviewExample" style="display:inline-block;transform:translateX(9px) translateY(3px);font-style:italic">(Hover over here to see jason.jpg)</div>
+			</div>
+			<paper-tooltip for="imagePreviewExample" position="right" style="text-align:center">
+				<span style="display:none">_</span>
+				<div style="padding-bottom:4px">Example of image preview in popup window</div>
+				<img src="images/older.png" style="width:120px"/>
+			</paper-tooltip-->
+
+			<div class="notificationSubOptions">
+				<div mustDonate class="layout horizontal center">
+					<paper-dropdown-menu id="notificationSound" msgLabel="notificationSound" style="width:190px">
+						<paper-listbox slot="dropdown-content" attr-for-selected="value" storage="notificationSound">
+							<paper-item value="">None</paper-item>
+							<paper-item value="blip.wav">Blip</paper-item>
+							<paper-item value="space chirp.wav">Space chirp</paper-item>
+							<paper-item value="ting.wav">Ting</paper-item>
+							<paper-item value="xylophone.wav">Xylophone</paper-item>
+						</paper-listbox>
+					</paper-dropdown-menu>
+					<paper-icon-button id="playSound" icon="av:play-arrow" class="testButton"></paper-icon-button>
+				</div>
+
+				<div mustDonate class="layout horizontal center">
+					<paper-dropdown-menu id="closeNotificationAfter" msgLabel="closeNotificationAfter" style="width:190px">
+						<paper-listbox slot="dropdown-content" attr-for-selected="value" storage="closeNotificationAfter">
+							<paper-item value="7" msg="Xseconds" msgArg1="7">7</paper-item>
+							<paper-item value="25" msg="Xseconds" msgArg1="25">25</paper-item>
+							<paper-item value="never" msg="never">never hide</paper-item>
+						</paper-listbox>
+					</paper-dropdown-menu>
+					<paper-icon-button id="testNotification" icon="social:notifications" class="testButton"></paper-icon-button>
+				</div>
+
+				<div mustDonate class="layout horizontal center">
+					<paper-dropdown-menu id="pollingInterval" msgLabel="pollingInterval" style="width:190px">
+						<paper-listbox slot="dropdown-content" attr-for-selected="value" storage="pollingInterval">
+							<paper-item value="realtime" msg="realtime" chrome-only hide-from-edge>real-time</paper-item>
+							<paper-item value="5" msg="Xminutes" msgArg1="5">5</paper-item>
+							<paper-item value="10" msg="Xminutes" msgArg1="10">10</paper-item>
+							<paper-item value="30" msg="Xminutes" msgArg1="30">30</paper-item>
+							<paper-item value="60" msg="Xhour" msgArg1="1">1</paper-item>
+							<paper-item value="120" msg="Xhours" msgArg1="2">2</paper-item>
+						</paper-listbox>
+					</paper-dropdown-menu>
+				</div>
+
+			</div>
+
+			<div>
+				<paper-dropdown-menu msgLabel="maximumItemsToDisplay" style="width:190px">
+					<paper-listbox slot="dropdown-content" attr-for-selected="value" storage="maxItemsToDisplay">
+						<paper-item value="20">20</paper-item>
+						<paper-item value="100">100</paper-item>
+						<paper-item value="200">200</paper-item>
+						<paper-item value="500">500</paper-item>
+					</paper-listbox>
+				</paper-dropdown-menu>
+			</div>
+			<div class="layout horizontal" style="margin-top:20px">
+				<paper-button id="revokePermissions" class="colored" raised msg="revokePermissions">Revoke permissions</paper-button>
+			</div>
+			<div style="margin:10px 0">
+				<paper-button id="resetFollowedFolders" class="colored" raised msg="resetFolders">Reset followed folders</paper-button>
+			</div>
+			<div>
+				<paper-button id="resetMutedFiles" class="colored" raised msg="resetFiles">Reset muted files</paper-button>
+			</div>
+			<div style="margin:15px 0">Muted files:</div>
+			<div class="layout vertical start">
+				<ul id="mutedFiles"></ul>
+			</div>
+
+		</div>
+	</app-header-layout>
+
+	<template id="genericDialogTemplate">
+		<paper-dialog id="genericDialog" modal="true">
+			<h2>blah blah</h2>
+			<paper-dialog-scrollable class="dialogDescription"></paper-dialog-scrollable>
+			<div class="buttons">
+		  		<paper-button dialog-other class="otherDialog" hidden>empty</paper-button>
+		  		<paper-button dialog-dismiss class="cancelDialog"><span msg="cancel"></span></paper-button>
+		  		<paper-button dialog-confirm autofocus class="okDialog"><span msg="ok"></span></paper-button>
+		  	</div>
+		</paper-dialog>
+	</template>
+
+	<template id="permissionDialogTemplate">
+		<paper-dialog id="permissionDialog" style="padding:10px">
+			<div id="tryGoogleAccountsSignInMessage" hidden style="margin-bottom: 10px;color: red">Problem with Chrome sign in. Try the Google Accounts sign in instead.</div>
+			<div id="googlePhotosHeader" hidden>Google Photos permissions are required</div>
+			<div class="buttons">
+				<paper-button dialog-confirm raised class="chromeSignIn colored"><span msg="useChromeSignIn">useChromeSignIn</span></paper-button>
+				<div msg="or" class="layout vertical center-center" style="margin:0 5px">or</div>
+				<paper-button dialog-other raised class="googleAccountsSignIn"><span msg="googleAccountsSignIn">googleAccountsSignIn</span></paper-button>
+				<paper-button dialog-dismiss class="cancel" hidden><span msg="cancel">Cancel</span></paper-button>
+				<paper-icon-button dialog-other class="moreInfo" icon="help"></paper-icon-button>
+			</div>
+		</paper-dialog>
+	</template>
+	
+	<!-- Must be above paper-drawer-panel -->
+	<paper-toast id="message" text="Done"><paper-icon-button class="closeToast" icon="close"></paper-icon-button></paper-toast>
+	<paper-toast id="error"><paper-button class="toastLink"></paper-button> <paper-icon-button class="closeToast" icon="close"></paper-icon-button></paper-toast>
+	
+</body>
+</html>

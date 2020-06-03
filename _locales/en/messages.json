@@ -1,0 +1,269 @@
+{
+	"nameNoTM": {"message": "Checker Plus for Google Drive"},
+	"description": {"message": "Quickly browse your Google Drive files without opening a webpage and get notifications of modifications to your shared documents"},
+
+	"today": {"message": "Today"},
+	"todayAt": {"message": "Today at"},
+	"tomorrow": {"message": "Tomorrow"},
+	"tomorrowAt": {"message": "Tomorrow at"},
+	"somedayAt": {"message": "$1 at"},
+	"tom": {"message": "tom"},
+	"yesterday": {"message": "yesterday"},
+	"yesterdayAt": {"message": "yesterday at"},
+	"m": {"message": "m"},
+	"h": {"message": "h"},
+	"d": {"message": "d"},
+	"min": {"message": "min"},
+
+	"signIn": {"message": "Sign in"},
+	"account": {"message": "Account"},
+	"loading": {"message": "Loading..."},
+	"ex": {"message": "e.g."},
+
+	"successful": {"message": "Successful"},
+	"options": {"message": "Options"},
+	"showDesktopNotifications": {"message": "Desktop notifications"},
+
+	"24hourMode": {"message": "24 hour time display"},
+	"24hourModeTitle": {"message": "Show time in 24 hour ie. 18:00"},
+	
+	"needHelp": {"message": "Need help?"},
+	"moreInfo": {"message": "More info"},
+	"remove": {"message": "Remove"},
+	"saved": {"message": "Saved!"},
+	"save": {"message": "Save"},
+
+	"aboutMe": {"message": "About"},
+
+	"inVARminutes": {"message": "in $1 min"},
+	"inVARhour": {"message": "in $1 hour"},
+	"inVARhours": {"message": "in $1 hours"},
+
+	"refresh": {"message": "Refresh"},
+
+	"or": {"message": "or"},
+
+	"hours": {"message": "hours"},
+	"week": {"message": "Week"},
+	"month": {"message": "Month"},
+	"day": {"message": "Day"},
+
+	"saving": {"message": "Saving..."},
+	"dismiss": {"message": "Dismiss"},
+	"dismissAll": {"message": "Dismiss All"},
+	
+	"delete": {"message": "Delete"},
+	
+	"more": {"message": "more"},
+	"option": {"message": "Option"},
+
+	"Xseconds": {"message": "$1 seconds"},
+	"Xminute": {"message": "$1 minute"},
+	"Xminutes": {"message": "$1 minutes"},
+	"Xhour": {"message": "$1 hour"},
+	"Xhours": {"message": "$1 hours"},
+	"Xday": {"message": "$1 day"},
+	"Xdays": {"message": "$1 days"},
+	"all": {"message": "All"},
+
+	"processing": {"message": "Processing..."},
+	"share": {"message": "Share"},
+
+	"language": {"message": "Language"},
+	"undo": {"message": "Undo"},
+	"volume": {"message": "Volume"},
+	"example": {"message": "example"},
+	"closeEsc": {"message": "Close (Esc)"},
+	"notifications": {"message": "Notifications"},
+	"general": {"message": "General"},
+	"button": {"message": "Button"},
+	"debug": {"message": "Debug"},
+	"widget": {"message": "Widget"},
+	
+	"grantedTo": {"message": "Granted to"},
+	"grantAccessAgain": {"message": "Grant access again"},
+
+	"changelog": {"message": "Changelog"},
+	"discoverMyApps": {"message": "Discover my apps"},
+	"help": {"message": "Help"},
+
+	"new": {"message": "New"},
+	"myDrive": {"message": "My Drive"},
+	"sharedWithMe": {"message": "Shared with me"},
+	"googlePhotos": {"message": "Google Photos"},
+	"recent": {"message": "Recent"},
+	"starred": {"message": "Starred"},
+
+	"newFolder": {"message": "New folder"},
+	
+	"openDrive": {"message": "Open Drive"},
+	"openGoogleDrive": {"message": "Open Google Drive"},
+	
+	"googleDocs": {"message": "Google Docs"},
+	"googleSheets": {"message": "Google Sheets"},
+	"googleSlides": {"message": "Google Slides"},
+
+	"me": {"message": "me"},
+	
+	"grantAccess": {"message": "Grant access"},
+
+	"feedback": {"message": "Feedback"},
+	"followMe": {"message": "Follow me"},
+
+	"markAsViewed": {"message": "Mark as viewed"},
+	"noFiles": {"message": "No files!"},
+
+	"mute": {"message": "Mute"},
+	"unmute": {"message": "Unmute"},
+	"seeRevisions": {"message": "See revisions"},
+
+	"created": {"message": "created"},
+	"modified": {"message": "modified"},
+	"Xchanges": {"message": "$1 changes"},
+
+	"search": {"message": "Search"},
+
+	"desktopNotificationsForModifiedFiles": {"message": "Notifications for new or modified files"},
+	"maximumItemsToDisplay": {"message": "Max files to display"},
+	"notificationSound": {"message": "Sound notification"},
+
+	"addStar": {"message": "Add star"},
+	"removeStar": {"message": "Remove star"},
+	"folder": {"message": "Folder"},
+	"cancel": {"message": "Cancel"},
+	"ok": {"message": "OK"},
+	"extraFeatures": {"message": "Extra features"},
+	"otherAmount": {"message": "Other amount"},
+
+	"extraFeaturesPopup1": {"message": "These dimmed out options are extra features I spent a lot of time developing."},
+	"extraFeaturesPopup2": {"message": "To unlock these features, contribute ANY amount in support of my work."},
+
+	"choosePaymentMethod": {"message": "Choose a payment method"},
+	"contribute": {"message": "Contribute"},
+	"contributeToContinue": {"message": "Contribute ANY amount"},
+
+	"alreadyDonated": {"message": "Already contributed"},
+
+	"enterAnAmount": {"message": "You must enter an amount!"},
+	"minimumAmount": {"message": "You must donate at least $1"},
+	"amount": {"message": "Amount"},
+	"continue": {"message": "Continue"},
+
+	"currencyCode": {"message": "USD"},
+
+	"thankYouForYourContribution": {"message": "The features are now unlocked. Thank you for your contribution!"},
+
+	"reducedDonationAd_popup": {"message": "Good news long time user!<br>Get the $1 for only 50&cent;"},
+
+	"lastModified": {"message": "Last modified"},
+	"lastModifiedBy": {"message": "Last modified by"},
+	"ownedBy": {"message": "Owned by"},
+	"getNotifications": {"message": "Get notifications"},
+
+	"extensionUpdated": {"message": "Extension updated!"},
+	"seeUpdates": {"message": "View updates"},
+	"doNotNotifyMeOfUpdates": {"message": "Do not notify me of updates"},
+
+	"fileUpload": {"message": "File upload"},
+	"fileMuted": {"message": "File muted"},
+	"fileUnmuted": {"message": "File unmuted"},
+	"fileRenamed": {"message": "File renamed"},
+	"removed": {"message": "Removed"},
+	"starAdded": {"message": "Star added"},
+	"starRemoved": {"message": "Star removed"},
+
+	"by": {"message": "by"},
+	"at": {"message": "at"},
+	"noNotifications": {"message": "No notifications"},
+	"notificationsForFoldersIChoose": {"message": "Show notifications for files inside $1"},
+	"notificationsForFoldersIChoose2": {"message": "folders I select"},
+	"notificationsForAllFilesExcept": {"message": "Show notifications for $1 files except folders I select"},
+	"notificationsForAllFilesExcept2": {"message": "all"},
+	"onlyIncludeFilesAddedToMyDrive": {"message": "Only include notifications for files added to My Drive"},
+	"showImagePreviewInNotifications": {"message": "Show image preview in notifications"},
+	"buttonIcon": {"message": "Button icon"},
+	"revokePermissions": {"message": "Revoke permissions"},
+	"resetFolders": {"message": "Reset followed folders"},
+	"resetFiles": {"message": "Reset muted files"},
+
+	"notificationsAddForX": {"message": "Notifications added for $1"},
+	"notificationsRemovedForX": {"message": "Notifications removed for $1"},
+
+	"markNotificationAsViewed": {"message": "Mark notification as viewed"},
+	"markAllNotificationsAsViewed": {"message": "Mark ALL notifications as viewed"},
+
+	"getLink": {"message": "Get link"},
+	"getShareableLink": {"message": "Get shareable link"},
+	"copyLink": {"message": "Copy link"},
+	"copied": {"message": "Copied"},
+
+	"makeThisAMonthlyContribution": {"message": "Make this a monthly contribution"},
+	"makeThisAMonthlyContributionTooltip": {"message": "Help maintain my user support and updates"},
+
+	"closeNotificationAfter": {"message": "Close notification after"},
+	"never": {"message": "Never"},
+
+	"licenseOnlyValidFor": {"message": "The license will only be valid for users who sign into their account with a"},
+	"changeThisDomain": {"message": "To change this email domain now $1"},
+	"changeThisDomain2": {"message": "sign out and sign in as a different user"},
+	"signInAsUserOfOrg": {"message": "You must $1 with your organisation's email"},
+	"signInAsUserOfOrg2": {"message": "sign out and sign in to your account"},
+
+	"multipleUserLicense": {"message": "Multiple user license"},
+	"multipleUserLicenseFor": {"message": "Multiple user license for $1"},
+
+	"anyAmount": {"message": "ANY amount"},
+
+	"Xuser": {"message": "$1 user"},
+	"Xusers": {"message": "$1 users"},
+	"unlimited": {"message": "Unlimited"},
+
+	"otherPlans": {"message": "Other plans"},
+	"otherPlansDescription": {"message": "Education pricing, yearly ..."},
+
+	"clickToolbarIconToContinue": {"message": "Click the toolbar icon to continue"},
+
+	"accessGranted": {"message": "Access Granted"},
+
+	"rename": {"message": "Rename"},
+
+	"tryAgain": {"message": "Please try again"},
+	"tryAgainLater": {"message": "Please try again later"},
+	"theresAProblem": {"message": "There's a problem"},
+
+	"silentNotifications": {"message": "Only show notifications on the button"},
+	"name": {"message": "Name"},
+	"owner": {"message": "Owner"},
+
+	"pollingInterval": {"message": "Polling interval"},
+	"realtime": {"message": "Real-time"},
+
+	"monthly": {"message": "Monthly"},
+	"monthlySubtitle": {"message": "Best deal! Cancel anytime"},
+	"monthlyPaymentBonus": {"message": "Monthly payment bonus"},
+	"onetime": {"message": "One-time"},
+	"includesExtraFeaturesForX": {"message": "Includes the extra features for $1"},
+	"unlockOtherExtensions": {"message": "Unlock the other extensions by opening their contribute page and use the Already Contributed link above."},
+
+	"card": {"message": "Card"},
+	"bitcoin": {"message": "Bitcoin"},
+	"setScreenshotFolder": {"message": "Set screenshot folder"},
+	"done": {"message": "Done"},
+
+	"useChromeSignIn": {"message": "Use Chrome sign in"},
+	"googleAccountsSignIn": {"message": "Google Accounts sign in"},
+
+	"teamDrives": {"message": "Team Drives"},
+
+	"anonymous": {"message": "Anonymous"},
+	"locate": {"message": "Locate"},
+	
+	"showOwnModifications": {"message": "Show my own modifications"},
+	"showAnonymousModifications": {"message": "Show anonymous modifications"},
+
+    "support": {"message": "Support"},
+    
+    "permissionIsRequired": {"message": "Permission is required"},
+
+	"LAST_ITEM_DO_NOT_REMOVE": {"message": "DO NOT REMOVE"}
+}

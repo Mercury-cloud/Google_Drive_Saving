@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>Revisions</title>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  	
+  	<link rel="icon" href="images/icon32.png" sizes="32x32">
+	<link rel="icon" href="images/icon64.png" sizes="64x64"/>
+	
+  	<link rel="stylesheet" href="css/diffview.css"/>
+  	 
+  	<script type="text/javascript" src="js/jquery.js"></script>
+  	<script type="text/javascript" src="js/common.js"></script>
+  	<script type="text/javascript" src="js/checkerPlusForDrive.js"></script>
+  	<script type="text/javascript" src="js/difflib.js"></script>
+  	<script type="text/javascript" src="js/diffview.js"></script>
+  	<script type="text/javascript" src="js/revisions.js"></script>
+  	
+  	<style>
+  		#loading {position:absolute;top:45%;left:45%}
+  		#header {padding:5px;text-align:center}
+  		body, td {font-size:15px;font-family:arial}
+  		#diffArea {height:95%}
+  		table.diff {padding:10px;height:100%;width:100%;border:none}
+  		th {display:none}
+  	</style>
+</head>
+<body>
+	<img id="loading" src="images/ajax-loader.gif"/>
+	<div id="header"><a id="fileTitle" href="#"></a></div>
+	<div id="diffArea"></div>
+</body>
+</html>

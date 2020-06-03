@@ -1,0 +1,151 @@
+body {font-family:Roboto,Helvetica,Arial,sans-serif;overflow:hidden} /* firefox scrollbars were showing */
+
+app-toolbar {padding:0 16px !important}
+
+#menu {pointer-events: auto;cursor: pointer}
+
+app-drawer-layout:not([narrow]) #menu {display:none}
+app-drawer-layout[opened] #mainToolbar {display:none}
+app-drawer-layout[opened] #leftNavExtras {display:block !important}
+app-drawer-layout[narrow] #mainTitle {display:inline-block !important}
+app-drawer-layout[narrow] #title {font-size:9px}
+app-drawer-layout[narrow] #topRight {display:none}
+app-drawer-layout[narrow] #newWrapper {display:none}
+app-drawer-layout:not([narrow]) app-toolbar > div {white-space:nowrap}
+
+#loading-spinner {position:absolute;top:48%;left:48%;width:30px;height:30px}
+
+#topRight paper-menu-button {padding:0}
+
+#title {font-size:18px;cursor:pointer}
+#title img {vertical-align:middle;max-height:32px}
+
+#mainTitle {font-size:11px;cursor:pointer;margin-left:10px}
+
+#newsNotification {color:green}
+
+#leftNav {margin-right:16px;background-color: transparent}
+#leftNav paper-item {color:#444;font-size:13px}
+#leftNav iron-icon, #leftNav paper-item > svg {width:24px;height:24px;margin-right:13px}
+#leftNav paper-item.unread {font-weight:bold}
+#leftNav paper-item:hover {background-color:#f4f4f4}
+#leftNav paper-item:focus:before, #leftNav paper-item:focus:after {background:none}
+#leftNav paper-item.active {font-weight:bold;color:#1967d2;background-color:#e8f0fe}
+
+#leftNav paper-item:hover, #leftNav paper-item.active {
+	border-radius:0 66px 66px 0;
+}
+
+.new-button {width:110px;color:#444444;font-size:1.2em;xxfont-weight:bold;border-radius:20px;text-align:left}
+
+#filesHeader, #filesSortingHeader {border-bottom:1px solid #eee}
+.breadcrumb:hover {text-decoration:underline;cursor:pointer}
+.breadcrumb.active {font-weight:bold}
+.middleHeaderWrapper {padding: 12px 10px 10px 16px}
+.middleHeader, .breadcrumb {color:gray;font-size:13px}
+#quickAccessHeader {font-weight: bold}
+#quickAccess {height:40px;margin:0 10px 0 -2px;padding: 0px 0 15px 0;overflow-x: hidden}
+#quickAccessPrev, #quickAccessNext {padding:0;height:15px}
+#quickAccess .owner, #quickAccess .lastModifiedTimeAndUser, #quickAccess .date, #quickAccess .lastModifiedUser, #quickAccess .notification, #quickAccess .more {display:none}
+#quickAccess .item {background-color:white;text-transform: initial;border-bottom:none;padding-right:10px;margin-right:8px;font-size:13px;min-width:120px;max-width: 147px}
+#quickAccess .fileName {width:68%;padding:0}
+
+#mainContainer {overflow-y:hidden !important} /* patch for mac but also we want the #files div to scroll instead of the default maincontainer */
+#filesSortingHeader {background-color:#fafafa}
+#filesSortingHeader.simulateScrollbar {padding-right:17px}
+#filesSortingHeader > div {padding:7px 12px}
+#filesSortingHeader .fileName {padding-right:18px}
+#filesSortingHeader .owner {padding-right:0}
+#filesSortingHeader .date {padding-left:6px}
+html[leftNavItem='myDrive'] #filesSortingHeader .fileName:hover, html[leftNavItem='myDrive'] #filesSortingHeader .date:hover {background-color:rgb(238, 238, 238);cursor:pointer}
+html[leftNavItem='teamDrives'] #filesSortingHeader .owner {visibility: hidden}
+#files {margin:0;padding:0px 0 2px 0;overflow-x:hidden;overflow-y:auto;font-size:13px}
+
+.fileCommands span {opacity:0;margin-left:3px;cursor:pointer}
+.markAsViewed {opacity:0}
+
+.item {white-space: nowrap;position:relative;padding:0px 24px 0px 0;border-bottom:1px solid #efefef}
+.item paper-tooltip {text-align:center}
+.item .more {color:#888;width:32px;height:32px;vertical-align:-webkit-baseline-middle}
+.item > * {display:inline-block;vertical-align:middle}
+.icon {margin:0 5px 0 10px;xxdisplay:inline-block !important}
+.icon.driveIcon {margin-right: 8px;margin-left: 14px;text-align:center;width:16px;height:16px}
+.icon.thumbnail {
+	margin-left:12px;
+	margin-right:6px;
+	--iron-icon-width:20px;
+	--iron-icon-height:20px;
+}
+.fileName {width:89%;overflow:hidden;text-overflow:ellipsis}
+.owner {width:10%;overflow:hidden;text-overflow:ellipsis}
+.owner img {border-radius:50px;max-height:20px;width:20px;vertical-align:middle;margin-right:5px;background-color:#ddd}
+.date {padding:0 5px}
+.lastModifiedTimeAndUser {display:none;width:85px;overflow:hidden;text-overflow:ellipsis}
+.lastModifiedUser {color:gray;font-size:11px}
+html[leftNavItem='sharedWithMe'] .owner {width:25%}
+html[leftNavItem='sharedWithMe'] .lastModifiedUser {display:none}
+
+.owner, .lastModifiedUser, .date, .more {display:none}
+
+.item:first-child {border-top:none}
+.item.unviewed {font-weight:bold}
+.item.unviewed:hover .fileCommands span.markAsViewed:hover {opacity:1}
+.item.hasNotification .notification {opacity:0.5}
+.item:hover:not(.hasNotification) .notification {opacity:0.2}
+.item:hover .fileCommands span.delete {opacity:0.4}
+.item:hover .fileCommands span.delete:hover {opacity:1}
+.item.unviewed:hover .fileCommands span.markAsViewed {opacity:0.4}
+.item.dragging .fileName {background:#eee;outline:1px solid blue}
+
+.fileName {padding:9px 4px 9px 0}
+.fileName:hover {cursor:pointer}
+#files [icon='folder'] {color:gray}
+.notification {opacity:0;width:32px;height:32px}
+.notification:hover {opacity:0.5 !important}
+
+#markAllNotificationsAsViewed {opacity:0.5}
+html:not([leftNavItem='notifications']) #markAllNotificationsAsViewed {display:none}
+
+html[leftNavItem='notifications'] .item {padding-right:32px}
+html:not([leftNavItem='notifications']) .markNotificationAsViewed {display:none}
+html[leftNavItem='notifications'] .item .markNotificationAsViewed {opacity:0;transition:opacity 0.1s ease-in}
+html[leftNavItem='notifications'] .item:hover .markNotificationAsViewed {opacity:0.5}
+html[leftNavItem='notifications'] .notification {display:none}
+
+.googlePhotoWrapper {width:31%;height:140px;display:inline-block;margin:5px;cursor:pointer}
+.googlePhoto {width:100%;height:100%}
+
+.open-below {top:-8px;left:15px}
+
+#optionsMenu {top:35px !important}
+
+#newWrapper {margin:12px 0 0 4px}
+#newWrapper span {white-space:nowrap}
+#newWrapper iron-icon {margin-left:5px;opacity:1}
+#quickAccess iron-icon, #newDoc iron-icon, #newSheet iron-icon, #newSlide iron-icon {width:16px;height:16px}
+
+#searchWrapper {display:none;width:100vw}
+html.searchInputVisible #title {opacity:0}
+html.searchInputVisible #searchWrapper {display:block;position:absolute;top:10px;left:10px;z-index:100}
+html.searchInputVisible #searchButton {display:none}
+#searchInput {background-color: inherit;font-size:20px;-webkit-appearance: none;padding:10px;outline:none;border:none}
+
+#fileContextMenu {z-index:100;display:none;position:absolute;box-shadow:gray 1px 1px 10px}
+#fileContextMenu paper-icon-item {padding-right:55px;min-height: 35px}
+
+#noFiles {margin:10px}
+
+#screenshotFolder iron-icon {opacity:1}
+
+@media screen and (min-width: 251px) and (min-height:201px) {
+	.fileName {width:39%}
+	html[leftNavItem='sharedWithMe'] .fileName {width:46%}
+	.lastModifiedTimeAndUser {display:inline-block;width:27%}
+	html[leftNavItem='sharedWithMe'] .lastModifiedTimeAndUser {width:50px}
+	.owner, .lastModifiedUser, .date, .more {display:inline-block}
+}
+
+@media (min-device-width: 1367px) {
+	body {width:800px;height:600px}
+	.owner {width:15%}
+}

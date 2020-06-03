@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<title>Upload file</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<script src="js/polymer-css.js"></script>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/extensionCommon.js"></script>
+	<script src="js/checkerPlusForDrive.js"></script>
+	<script src="js/uploadFile.js"></script>
+	
+	<style>
+		body {margin:0;height:100%}
+		#inputFile {position:absolute; top:-100px}
+		#uploadIcon {background-color:#ddd;border-radius:50%;width:100px;height:100px}
+		#mainSpinner {position:absolute !important;top:28% !important;left:40% !important;width:100px !important;height:100px !important}
+		#files {margin:30px 10px 10px}
+		.file {margin:5px;font-size:20px;cursor:pointer}
+		.fileName {text-transform:none}
+	</style>
+	
+</head>
+
+<body class="fullbleed layout vertical center-center" unresolved unresolved2>
+	<input id="inputFile" type="file"/>
+	<paper-icon-button id="uploadIcon" icon="file-upload"></paper-icon-button>
+	
+	<paper-spinner id="mainSpinner" active style="display:none"></paper-spinner>
+	
+	<div id="files"></div>
+	
+	<paper-toast id="message"><paper-icon-button class="closeToast" icon="close"></paper-icon-button></paper-toast>
+	<paper-toast id="error"><paper-button class="toastLink"></paper-button> <paper-icon-button class="closeToast" icon="close"></paper-icon-button></paper-toast>
+</body>
+</html>

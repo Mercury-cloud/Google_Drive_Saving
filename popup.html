@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html style="overflow:hidden">
+<head>
+ 	<title>Checker Plus for Google Drive - Popup page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script src="js/polymer-css.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/popup.css">
+</head>
+
+<body class="layout vertical popup" unresolved unresolved2 style="margin:0;opacity:0;width:800px;height:600px">
+
+	<iron-iconset-svg name="myIcons" iconSize="20" style="display:none">
+	  <svg>
+	    <defs>
+		  <g id="googleDriveIcon">
+			<path d="M3 20.01c0 1.1.89 1.99 2 1.99h14c1.1 0 2-.9 2-1.99V18H3v2.01zM18 19c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm1-17H5c-1.1 0-2 .9-2 1.99V17h18V3.99C21 2.89 20.11 2 19 2zm-8.62 3h3.24l3.25 5.68h-3.24L10.38 5zm-3.52 6.16l3.11-5.44s1.62 2.85 1.62 2.84L8.49 14l-1.63-2.84zM15.51 14H9.3l1.62-2.84h6.21L15.51 14z"></path>
+	      </g>
+		  <g id="teamDrive">
+			<path d="M19 2H5c-1.1 0-2 .9-2 1.99V17h18V3.99C21 2.89 20.11 2 19 2zm-4.38 4c.97 0 1.75.79 1.75 1.75S15.6 9.5 14.62 9.5c-.96 0-1.75-.79-1.75-1.75S13.65 6 14.62 6zM9.38 6c.97 0 1.75.79 1.75 1.75S10.35 9.5 9.38 9.5c-.96 0-1.75-.79-1.75-1.75S8.41 6 9.38 6zm4.37 7H5v-.26c0-1.46 2.91-2.19 4.38-2.19s4.38.73 4.38 2.19V13zM19 13h-3.94v-.26c0-.91-.48-1.61-1.17-2.14.26-.03.52-.05.73-.05 1.46 0 4.38.73 4.38 2.19V13zM3 20.01c0 1.1.89 1.99 2 1.99h14c1.1 0 2-.9 2-1.99V18H3v2.01zM18 19c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"></path>
+	      </g>
+	    </defs>
+	  </svg>
+	</iron-iconset-svg>
+	
+	<div style="position:absolute" tabindex=0></div> <!-- Mac patch because focus was automatically being set on first item and it happened to show a tooltip all the time, so focus on this one instead -->
+
+	<app-drawer-layout responsive-width="200px" fullbleed>
+		<app-drawer id="drawerPanel" slot="drawer">
+			<app-header>
+				<app-toolbar>
+					<div>
+						<span id="title" class="flex"><img src="images/icon64.png"/> <span>Checker Plus for Google Drive</span>
+							<paper-tooltip msg="openGoogleDrive"></paper-tooltip>
+						</span>
+						<div id="searchWrapper">
+							<paper-icon-button id="back" icon="arrow-back" role="button" aria-label="search" style="vertical-align:top"></paper-icon-button> <input type="input" id="searchInput" msgPlaceholder="search" autocomplete="off">
+						</div>
+					</div>
+				</app-toolbar>
+			</app-header>
+			<div id="newWrapper">
+				<paper-menu-button>
+					<paper-button raised slot="dropdown-trigger" class="new-button">
+						<iron-icon src="images/google-plus-sign.svg"></iron-icon>
+						<span msg="new">New</span>
+					</paper-button>
+					<paper-listbox slot="dropdown-content">
+						<paper-icon-item id="newFolder">
+							<iron-icon icon="folder" slot="item-icon" style="color:#999"></iron-icon>
+							<span msg="folder">Folder</span>
+						</paper-icon-item>
+						<paper-icon-item id="newFile">
+							<iron-icon icon="note-add" slot="item-icon" style="color:#999"></iron-icon>
+							<span msg="fileUpload">file upload</span>
+						</paper-icon-item>
+						<paper-item class="separator" disabled></paper-item>
+						<paper-icon-item id="newDoc">
+							<iron-icon src="https://ssl.gstatic.com/docs/doclist/images/icon_11_document_list.png" slot="item-icon"></iron-icon>
+							<span msg="googleDocs">Google Docs</span>
+						</paper-icon-item>
+						<paper-icon-item id="newSheet">
+							<iron-icon src="https://ssl.gstatic.com/docs/doclist/images/icon_11_spreadsheet_list.png" slot="item-icon"></iron-icon>
+							<span msg="googleSheets">Google sheets</span>
+						</paper-icon-item>
+						<paper-icon-item id="newSlide">
+							<iron-icon src="https://ssl.gstatic.com/docs/doclist/images/icon_11_presentation_list.png" slot="item-icon"></iron-icon>
+							<span msg="googleSlides">Google slides</span>
+						</paper-icon-item>
+					</paper-listbox>
+				</paper-menu-button>
+			</div>
+			<div style="height: 100%; overflow: auto;">
+				<paper-listbox id="leftNav">
+					<paper-item id="myDrive">
+						<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="myDrive">MyDrive</span>
+					</paper-item>
+					<paper-item id="teamDrives" hidden>
+						<iron-icon icon="myIcons:teamDrive"></iron-icon> <span msg="teamDrives">teamdrives</span>
+					</paper-item>
+					<paper-item id="sharedWithMe">
+						<iron-icon icon="social:people"></iron-icon> <span id="sharedWithMeText" msg="sharedWithMe">Shared with Me</span>
+					</paper-item>
+					<paper-item id="recent">
+						<iron-icon icon="schedule"></iron-icon> <span msg="recent">Recent</span>
+					</paper-item>
+					<!--paper-item id="googlePhotos">
+						<svg viewBox="0 0 24 24" fill="#777">
+							<path fill-rule="evenodd" clip-rule="evenodd" fill="none" d="M0 0h24v24H0z"></path>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M6.32 7l-4.45 4.48c-.05.05-.13.18-.13.26 0 .16.1.26.26.26h7c1.14 0 2-.86 2-2V7H6.32zM22 12h-7c-1.14 0-2 .86-2 2v3h4.68l4.45-4.48c.05-.05.13-.18.13-.26 0-.16-.1-.26-.26-.26zM12.52 1.87c-.05-.05-.18-.13-.26-.13-.16 0-.26.1-.26.26v7c0 1.14.86 2 2 2h3V6.32l-4.48-4.45zM10 13H7v4.68l4.48 4.45c.05.05.18.13.26.13.16 0 .26-.1.26-.26v-7c0-1.14-.86-2-2-2z"></path>
+						</svg> <span msg="googlePhotos">Google Photos</span>
+					</paper-item-->
+					<paper-item id="starred">
+						<iron-icon icon="star"></iron-icon> <span msg="starred">Starred</span>
+					</paper-item>
+					<paper-item id="notifications">
+						<iron-icon icon="social:notifications"></iron-icon> <span id="notificationsText" msg="notifications">notifications</span>
+					</paper-item>
+					<div id="leftNavExtras" hidden>
+						<div class="separator"></div>
+						<paper-item class="options">
+							<iron-icon icon="settings"></iron-icon> <span msg="options">Options</span>
+						</paper-item>
+						<paper-item class="help">
+							<iron-icon icon="help"></iron-icon> <span msg="help">Help</span>
+						</paper-item>
+					</div>
+				</paper-listbox>
+			</div>
+		</app-drawer>
+		<app-header-layout>
+			<app-header slot="header">
+				<app-toolbar>
+					<div class="flex">
+						<iron-icon id="menu" icon="menu" tabindex="0"></iron-icon>
+						<span id="mainTitle" hidden>CHECKER PLUS for Google Drive</span>
+						<paper-tooltip msg="openGoogleDrive" for="mainTitle"></paper-tooltip>
+					</div>
+					<div id="topRight">
+						<paper-icon-button id="newsNotification" icon="av:new-releases" hidden></paper-icon-button>
+						<paper-tooltip for="newsNotification">
+							<div id="newsNotificationReducedDonationMessage" class="hide" style="text-align:center"><span msg="reducedDonationAd_popup">Good news long time user!<br>You can get the latest <span msg="extraFeatures" style="text-transform:lowercase">extra features</span>												for only 50&cent;</span>
+							</div>
+						</paper-tooltip>
+						<paper-icon-button id="searchButton" msgTitle="search" icon="search"></paper-icon-button>
+						<paper-icon-button id="refresh" msgTitle="refresh" icon="refresh"></paper-icon-button>
+						<paper-icon-button id="maximize" msgTitle="openGoogleDrive" icon="open-in-browser"></paper-icon-button>
+						<paper-menu-button id="optionsMenuButton" horizontal-align="right">
+							<paper-icon-button icon="more-vert" slot="dropdown-trigger" style="display:block" msgTitle="options"></paper-icon-button>
+							<template id="optionsMenuTemplate">
+								<paper-listbox id="optionsMenu" slot="dropdown-content">
+									<paper-icon-item class="options">
+										<iron-icon icon="settings" slot="item-icon"></iron-icon>
+										<span msg="options"></span>
+									</paper-icon-item>
+									<paper-item class="separator"></paper-item>
+									<paper-item class="changelog" msg="changelog">Changelog</paper-item>
+									<paper-item class="contribute" msg="contribute">Contribute</paper-item>
+									<paper-item class="discoverMyApps" msg="discoverMyApps">Discover my apps</paper-item>
+									<paper-item class="aboutMe" msg="aboutMe">About me</paper-item>
+									<paper-item class="help"><span msg="help">help</span></paper-item>
+								</paper-listbox>
+							</template>
+						</paper-menu-button>
+						<paper-icon-button class="close" msgTitle="closeEsc" icon="close"></paper-icon-button>
+					</div>
+				</app-toolbar>
+			</app-header>
+			<div id="mainContent">
+				<div id="quickAccessWrapper">
+					<div id="quickAccessHeader" class="middleHeaderWrapper layout horizontal justified">
+						<div class="middleHeader flex" msg="starred">starred</div>
+						<paper-icon-button id="quickAccessPrev" disabled hidden icon="chevron-left"></paper-icon-button>
+						<paper-icon-button id="quickAccessNext" icon="chevron-right"></paper-icon-button>
+					</div>
+					<div id="quickAccess" class="layout horizontal"></div>
+				</div>
+				<div id="filesHeader" class="layout horizontal justified">
+					<div id="breadcrumbWrapper" class="middleHeaderWrapper"></div>
+					<paper-icon-button id="markAllNotificationsAsViewed" msgTitle="markAllNotificationsAsViewed" icon="done-all"></paper-icon-button>
+				</div>
+				<div id='filesSortingHeader' class='layout horizontal'>
+					<div class='fileName' msg="name"></div>
+					<div class='owner' msg="owner"></div>
+					<div class='date' msg="lastModified"></div>
+				</div>
+				<div id="files" class="flex"></div>
+			</div>
+		</app-header-layout>
+	</app-drawer-layout>
+
+	<template id="fileContextMenuTemplate">
+		<paper-listbox id="fileContextMenu">
+			<paper-icon-item id="addStar">
+				<iron-icon icon="star" slot="item-icon"></iron-icon>
+				<span msg="addStar">add star</span>
+			</paper-icon-item>
+			<paper-icon-item id="removeStar">
+				<iron-icon icon="star-border" slot="item-icon"></iron-icon>
+				<span msg="removeStar">remove star</span>
+			</paper-icon-item>
+			<paper-icon-item id="markAsViewed">
+				<iron-icon icon="check" slot="item-icon"></iron-icon>
+				<span msg="markAsViewed">Mark as viewed</span>
+			</paper-icon-item>
+			<paper-icon-item id="copyFileLink">
+				<iron-icon icon="content-copy" slot="item-icon"></iron-icon>
+				<span msg="copyLink">copyLink</span>
+			</paper-icon-item>
+			<paper-icon-item id="getShareableLink">
+				<iron-icon icon="link" slot="item-icon"></iron-icon>
+				<span msg="getShareableLink">getShareableLink</span>
+			</paper-icon-item>
+			<paper-icon-item id="locate">
+				<iron-icon icon="search" slot="item-icon"></iron-icon>
+				<span msg="locate">locate</span>
+			</paper-icon-item>
+			<paper-icon-item id="mute">
+				<iron-icon icon="remove-circle" slot="item-icon"></iron-icon>
+				<span msg="mute">Mute</span>
+			</paper-icon-item>
+			<paper-icon-item id="unmute">
+				<iron-icon icon="remove-circle-outline" slot="item-icon"></iron-icon>
+				<span msg="unmute">unmute</span>
+			</paper-icon-item>
+			<paper-icon-item id="rename">
+				<iron-icon icon="editor:mode-edit" slot="item-icon"></iron-icon>
+				<span msg="rename">rename</span>...
+			</paper-icon-item>
+			<paper-item id="screenshotFolderSep" class="separator" disabled></paper-item>
+			<paper-icon-item id="screenshotFolder">
+				<iron-icon src="/images/screenshot.png" slot="item-icon"></iron-icon>
+				<span msg="setScreenshotFolder">setScreenshotFolder</span>
+			</paper-icon-item>
+			<paper-item class="separator" disabled></paper-item>
+			<paper-icon-item id="delete">
+				<iron-icon icon="delete" slot="item-icon"></iron-icon>
+				<span msg="remove">remove</span>
+			</paper-icon-item>
+		</paper-listbox>
+	</template>
+
+	<template id="permissionDialogTemplate">
+		<paper-dialog id="permissionDialog" style="padding:10px">
+			<div id="tryGoogleAccountsSignInMessage" hidden style="margin-bottom: 10px;color: red">Problem with Chrome sign in. Try the Google Accounts sign in instead.</div>
+			<div id="googlePhotosHeader" hidden>Google Photos permissions are required</div>
+			<div class="buttons">
+				<paper-button dialog-confirm raised class="chromeSignIn colored"><span msg="useChromeSignIn">useChromeSignIn</span></paper-button>
+				<div msg="or" class="layout vertical center-center" style="margin:0 5px">or</div>
+				<paper-button dialog-other raised class="googleAccountsSignIn"><span msg="googleAccountsSignIn">googleAccountsSignIn</span></paper-button>
+				<paper-button dialog-dismiss class="cancel" hidden><span msg="cancel">Cancel</span></paper-button>
+				<paper-icon-button dialog-other class="moreInfo" icon="help"></paper-icon-button>
+			</div>
+		</paper-dialog>
+	</template>
+
+	<template id="newFolderDialogTemplate">
+		<paper-dialog id="newFolderDialog" modal="true">
+			<h2 msg="newFolder">New folder</h2>
+			<paper-dialog-scrollable class="dialogDescription">
+				<paper-input id="newFolderInput" autofocus no-label-float="true"></paper-input>
+			</paper-dialog-scrollable>
+			<div class="buttons">
+				<paper-button dialog-dismiss><span msg="cancel">cancel</span></paper-button>
+				<paper-button dialog-confirm><span msg="ok">ok</span></paper-button>
+			</div>
+		</paper-dialog>
+	</template>
+
+	<template id="renameDialogTemplate">
+		<paper-dialog id="renameDialog" modal="true">
+			<h2>Rename</h2>
+			<paper-dialog-scrollable class="dialogDescription">
+				<paper-input id="renameInput" autofocus no-label-float="true"></paper-input>
+			</paper-dialog-scrollable>
+			<div class="buttons">
+				<paper-button dialog-dismiss><span msg="cancel">cancel</span></paper-button>
+				<paper-button dialog-confirm><span msg="ok">ok</span></paper-button>
+			</div>
+		</paper-dialog>
+	</template>
+
+	<template id="genericDialogTemplate">
+		<paper-dialog id="genericDialog" modal="true">
+			<h2>blah blah</h2>
+			<paper-dialog-scrollable class="dialogDescription"></paper-dialog-scrollable>
+			<div class="buttons">
+				<paper-button dialog-confirm autofocus><span msg="ok">ok</span></paper-button>
+			</div>
+		</paper-dialog>
+	</template>
+	
+	<paper-toast id="message"><paper-icon-button class="closeToast" icon="close"></paper-icon-button></paper-toast>
+	<paper-toast id="error"><paper-button class="toastLink"></paper-button> <paper-icon-button class="closeToast" icon="close"></paper-icon-button></paper-toast>
+	
+	<input id="hiddenText" type="text" style="position:absolute;top:-1000px;left:-1000px;width:10px" /> <!-- for copyEmailAddress -->
+	
+	<paper-spinner id="loading-spinner" active hidden></paper-spinner>
+	
+	<script src="js/jquery.js" ></script>
+	<script src="js/common.js"></script>
+	<script src="js/extensionCommon.js"></script>
+	<script src="js/checkerPlusForDrive.js"></script>
+	<script src="js/popup.js"></script>
+</body>
+</html>
