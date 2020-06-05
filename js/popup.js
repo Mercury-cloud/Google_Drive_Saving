@@ -1193,7 +1193,6 @@ $(document).ready(function() {
 		});
 
 		$("#savePage").click(function() {
-			console.log('hdskjfhsdjkfhsdkjhfsdkjh')
 			chrome.runtime.sendMessage({ type: "pageSaveRequest" });
 
 			// var width = 500;

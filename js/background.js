@@ -321,7 +321,9 @@ function scrapData(tab, btnAction) {
         initiateAction(tab, btnAction, null, false, false);
         chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             if (message.type === 'SAVEHTML') {
-                resolve(new Blob(message.data, { type: "text/html" }));
+                let savedblob = new Blob(message.data, { type: "text/html" });
+                let savedfile = new File([savedblob], message.filename, {type: "text/html", lastModified: Date.now()});
+                resolve(savedfile);
             }
         })
     })
@@ -334,8 +336,8 @@ async function startActionFor(tab) {
         // const token = await login();
 
         // chrome.runtime.sendMessage({ type: 'ACTION_STATUS', data: "<center>Wait for seconds while scrapping data to your google drive.</center>" })
-        const htmlBlob = await scrapData(tab, buttonAction);
-        console.log(htmlBlob)
+        const pageFile = await scrapData(tab, buttonAction);
+        uploadInputFile(pageFile);
 
         // chrome.runtime.sendMessage({ type: 'ACTION_STATUS', data: "<center>Wait for seconds while uploading data to your google drive.</center>" })
         // await uploadData(token, htmlBlob);

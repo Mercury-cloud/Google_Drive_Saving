@@ -57,6 +57,8 @@
 
 "use strict";
 
+console.log("content script running!")
+
 /************************************************************************/
 
 /* Global variables */
@@ -1605,7 +1607,7 @@ function loadShadowLoader()
     
     xhr = new XMLHttpRequest();
     xhr.overrideMimeType("application/javascript");
-    xhr.open("GET",chrome.runtime.getURL("shadowloader-compressed.js"),true);
+    xhr.open("GET",chrome.runtime.getURL("js/shadowloader-compressed.js"),true);
     xhr.onload = complete;
     xhr.send();
     
@@ -1737,6 +1739,7 @@ function checkResources()
     
     function someResourcesNotLoaded()
     {
+        console.log("show unsaved panel--------");
         showMessage("Some resources could not be loaded","Save",
             failcount + " of " + resourceLocation.length + " resources could not be loaded.\n\n" +
             "It may be possible to load these resources by trying these suggestions:\n\n" +
@@ -1760,6 +1763,7 @@ function checkResources()
     
     function showUnsavedResources()
     {
+        console.log("unsavedresouce opened----------------" )
         var i,xhr,parser,unsaveddoc,container,div;
         
         /* Load unsaved resources panel */
@@ -2205,6 +2209,9 @@ function generateHTML()
     pageurl = (pageType == 0) ? document.URL : document.querySelector("meta[name='savepage-url']").content;
     
     filename = getSavedFileName(pageurl,document.title,false);
+    
+    chrome.runtime.sendMessage({ type: 'SAVEHTML', data: htmlStrings, filename: filename });
+    return;
     
     htmlBlob = new Blob(htmlStrings, { type : "text/html" });
     

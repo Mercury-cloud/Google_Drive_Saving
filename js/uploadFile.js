@@ -89,7 +89,7 @@ $(document).ready(function() {
 function uploadInputFile(file) {
 	return new Promise(function(resolve, reject) {
 		var fileReader = new FileReader();
-		
+		console.log("file info-----", file);
 		fileReader.onload = function() {
 			console.log("name: ", file.name);
 			console.log("name: ", file.type);

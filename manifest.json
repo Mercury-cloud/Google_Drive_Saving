@@ -6,10 +6,12 @@
 	"version": "7.6.1",
 	"background": {
 		"scripts": [
+			"js/jquery.js",
 			"js/common.js",
 			"js/checkerPlusForDrive.js",
 			"js/difflib.js",
 			"js/diffview.js",
+			"js/uploadFile.js",
 			"js/background.js"
 		],
 		"persistent": true
@@ -70,7 +72,14 @@
 		"options.html",
 		"popup.html",
 		"contribute.html",
-		"oauth2callback.html"
+		"oauth2callback.html",
+		"message-panel.html", 
+		"unsaved-panel.html", 
+		"comments-panel.html", 
+		"pageinfo-panel.html",
+		"pageinfo-bar-compressed.html", 
+		"js/shadowloader-compressed.js", 
+		"js/resourceloader-compressed.js"
 	],
 	"gcm_sender_id": "103953800507"
 }
