@@ -868,7 +868,7 @@ function generateBreadcrumbs(action) {
 		$breadcrumb.click(function() {
 			var folder = $(this).data("folder");
 			var breadcrumbIndex = $(this).data("index");
-			
+			console.log("breadcrumb clicked--------", folder)
 			if (folder.isMyDriveRoot) {
 				$("#myDrive").click();
 			} else if (folder.isTeamDrivesRoot) {
@@ -1195,39 +1195,19 @@ $(document).ready(function() {
 		$("#savePage").click(function() {
 			chrome.runtime.sendMessage({ type: "pageSaveRequest" });
 
-			// var width = 500;
-			// var height = 300;
-			
-			// // enlarge if using zoom
-			// width *= window.devicePixelRatio;
-			// height *= window.devicePixelRatio;
-			
-			// var left = (screen.width/2)-(width/2);
-			// var top = (screen.height/2)-(height/2);
-			
-			// chrome.windows.getCurrent(windowResponse => {
-			// 	// temp
-			// 	console.log("windowResponse", windowResponse);
-			// 	localStorage._currentWindowId = windowResponse.id;
-			// 	chrome.windows.create({url: chrome.runtime.getURL("uploadFile.html?parentId=" + encodeURIComponent(generateParentId())), width:Math.round(width), height:Math.round(height), left:Math.round(left), top:Math.round(top), type:"popup", state:"normal"}, function(windowResponse) {
-			// 		// patch for Firefox which could not use window.close inside upload file
-			// 		localStorage._uploadWindowId = windowResponse.id;
-			// 		//window.close();
-			// 	});
-			// });
 		});
 
-		$("#newDoc").click(function() {
-			openDriveUrl("https://docs.google.com/document/create");
-		});
+		// $("#newDoc").click(function() {
+		// 	openDriveUrl("https://docs.google.com/document/create");
+		// });
 
-		$("#newSheet").click(function() {
-			openDriveUrl("https://docs.google.com/spreadsheets/create");
-		});
+		// $("#newSheet").click(function() {
+		// 	openDriveUrl("https://docs.google.com/spreadsheets/create");
+		// });
 
-		$("#newSlide").click(function() {
-			openDriveUrl("https://docs.google.com/presentation/create");
-		});
+		// $("#newSlide").click(function() {
+		// 	openDriveUrl("https://docs.google.com/presentation/create");
+		// });
 		
 		function processNavItem(leftNavItemNode, params) {
 			var $leftNavItemActive = $(leftNavItemNode);
@@ -1265,6 +1245,7 @@ $(document).ready(function() {
 			params.orderBy = SORT_BY_NAME;
 			processNavItem(this, params);
 		});
+
 
 		$("#teamDrives").click(function () {
 			var params = {};

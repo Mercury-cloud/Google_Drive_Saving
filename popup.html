@@ -25,92 +25,52 @@
 	<div style="position:absolute" tabindex=0></div> <!-- Mac patch because focus was automatically being set on first item and it happened to show a tooltip all the time, so focus on this one instead -->
 
 	<app-drawer-layout responsive-width="200px" fullbleed>
-		<app-drawer id="drawerPanel" slot="drawer">
-			<app-header>
-				<app-toolbar>
-					<div>
-						<span id="title" class="flex"><img src="images/icon64.png"/> <span>Checker Plus for Google Drive</span>
-							<paper-tooltip msg="openGoogleDrive"></paper-tooltip>
-						</span>
-						<div id="searchWrapper">
-							<paper-icon-button id="back" icon="arrow-back" role="button" aria-label="search" style="vertical-align:top"></paper-icon-button> <input type="input" id="searchInput" msgPlaceholder="search" autocomplete="off">
-						</div>
-					</div>
-				</app-toolbar>
-			</app-header>
-			<div id="newWrapper">
-				<paper-menu-button>
-					<paper-button raised slot="dropdown-trigger" class="new-button">
-						<iron-icon src="images/google-plus-sign.svg"></iron-icon>
-						<span msg="new">New</span>
-					</paper-button>
-					<paper-listbox slot="dropdown-content">
-						<paper-icon-item id="newFolder">
-							<iron-icon icon="folder" slot="item-icon" style="color:#999"></iron-icon>
-							<span msg="folder">Folder</span>
-						</paper-icon-item>
-						<paper-icon-item id="newFile">
-							<iron-icon icon="note-add" slot="item-icon" style="color:#999"></iron-icon>
-							<span msg="fileUpload">file upload</span>
-						</paper-icon-item>
-						<paper-icon-item id="savePage">
-							<iron-icon icon="note-add" slot="item-icon" style="color:#999"></iron-icon>
-							<span msg="pageFileUpload">webpage saving</span>
-						</paper-icon-item>
-						<paper-item class="separator" disabled></paper-item>
-						<paper-icon-item id="newDoc">
-							<iron-icon src="https://ssl.gstatic.com/docs/doclist/images/icon_11_document_list.png" slot="item-icon"></iron-icon>
-							<span msg="googleDocs">Google Docs</span>
-						</paper-icon-item>
-						<paper-icon-item id="newSheet">
-							<iron-icon src="https://ssl.gstatic.com/docs/doclist/images/icon_11_spreadsheet_list.png" slot="item-icon"></iron-icon>
-							<span msg="googleSheets">Google sheets</span>
-						</paper-icon-item>
-						<paper-icon-item id="newSlide">
-							<iron-icon src="https://ssl.gstatic.com/docs/doclist/images/icon_11_presentation_list.png" slot="item-icon"></iron-icon>
-							<span msg="googleSlides">Google slides</span>
-						</paper-icon-item>
-					</paper-listbox>
-				</paper-menu-button>
+		<div id="title">
+			<span id="title" class="flex"><img src="images/icon64.png"/> <span>Saved pages in my Google Drive</span>
+				<paper-tooltip msg="openGoogleDrive"></paper-tooltip>
+			</span>
+			<div id="searchWrapper">
+				<paper-icon-button id="back" icon="arrow-back" role="button" aria-label="search" style="vertical-align:top"></paper-icon-button> <input type="input" id="searchInput" msgPlaceholder="search" autocomplete="off">
 			</div>
-			<div style="height: 100%; overflow: auto;">
-				<paper-listbox id="leftNav">
-					<paper-item id="myDrive">
-						<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="myDrive">MyDrive</span>
+		</div>
+		<paper-item id="savePage">
+			<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="savePage">Save Current Page</span>
+		</paper-item>
+		<paper-item id="myDrive" style="display:none">
+			<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="myDrive"></span>
+		</paper-item>
+				
+				<!-- <paper-item id="teamDrives" hidden>
+					<iron-icon icon="myIcons:teamDrive"></iron-icon> <span msg="teamDrives">teamdrives</span>
+				</paper-item>
+				<paper-item id="sharedWithMe">
+					<iron-icon icon="social:people"></iron-icon> <span id="sharedWithMeText" msg="sharedWithMe">Shared with Me</span>
+				</paper-item>
+				<paper-item id="recent">
+					<iron-icon icon="schedule"></iron-icon> <span msg="recent">Recent</span>
+				</paper-item> -->
+				<!--paper-item id="googlePhotos">
+					<svg viewBox="0 0 24 24" fill="#777">
+						<path fill-rule="evenodd" clip-rule="evenodd" fill="none" d="M0 0h24v24H0z"></path>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M6.32 7l-4.45 4.48c-.05.05-.13.18-.13.26 0 .16.1.26.26.26h7c1.14 0 2-.86 2-2V7H6.32zM22 12h-7c-1.14 0-2 .86-2 2v3h4.68l4.45-4.48c.05-.05.13-.18.13-.26 0-.16-.1-.26-.26-.26zM12.52 1.87c-.05-.05-.18-.13-.26-.13-.16 0-.26.1-.26.26v7c0 1.14.86 2 2 2h3V6.32l-4.48-4.45zM10 13H7v4.68l4.48 4.45c.05.05.18.13.26.13.16 0 .26-.1.26-.26v-7c0-1.14-.86-2-2-2z"></path>
+					</svg> <span msg="googlePhotos">Google Photos</span>
+				</paper-item-->
+				<!-- <paper-item id="starred">
+					<iron-icon icon="star"></iron-icon> <span msg="starred">Starred</span>
+				</paper-item>
+				<paper-item id="notifications">
+					<iron-icon icon="social:notifications"></iron-icon> <span id="notificationsText" msg="notifications">notifications</span>
+				</paper-item> -->
+				<!-- <div id="leftNavExtras" hidden>
+					<div class="separator"></div>
+					<paper-item class="options">
+						<iron-icon icon="settings"></iron-icon> <span msg="options">Options</span>
 					</paper-item>
-					<paper-item id="teamDrives" hidden>
-						<iron-icon icon="myIcons:teamDrive"></iron-icon> <span msg="teamDrives">teamdrives</span>
+					<paper-item class="help">
+						<iron-icon icon="help"></iron-icon> <span msg="help">Help</span>
 					</paper-item>
-					<paper-item id="sharedWithMe">
-						<iron-icon icon="social:people"></iron-icon> <span id="sharedWithMeText" msg="sharedWithMe">Shared with Me</span>
-					</paper-item>
-					<paper-item id="recent">
-						<iron-icon icon="schedule"></iron-icon> <span msg="recent">Recent</span>
-					</paper-item>
-					<!--paper-item id="googlePhotos">
-						<svg viewBox="0 0 24 24" fill="#777">
-							<path fill-rule="evenodd" clip-rule="evenodd" fill="none" d="M0 0h24v24H0z"></path>
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M6.32 7l-4.45 4.48c-.05.05-.13.18-.13.26 0 .16.1.26.26.26h7c1.14 0 2-.86 2-2V7H6.32zM22 12h-7c-1.14 0-2 .86-2 2v3h4.68l4.45-4.48c.05-.05.13-.18.13-.26 0-.16-.1-.26-.26-.26zM12.52 1.87c-.05-.05-.18-.13-.26-.13-.16 0-.26.1-.26.26v7c0 1.14.86 2 2 2h3V6.32l-4.48-4.45zM10 13H7v4.68l4.48 4.45c.05.05.18.13.26.13.16 0 .26-.1.26-.26v-7c0-1.14-.86-2-2-2z"></path>
-						</svg> <span msg="googlePhotos">Google Photos</span>
-					</paper-item-->
-					<paper-item id="starred">
-						<iron-icon icon="star"></iron-icon> <span msg="starred">Starred</span>
-					</paper-item>
-					<paper-item id="notifications">
-						<iron-icon icon="social:notifications"></iron-icon> <span id="notificationsText" msg="notifications">notifications</span>
-					</paper-item>
-					<div id="leftNavExtras" hidden>
-						<div class="separator"></div>
-						<paper-item class="options">
-							<iron-icon icon="settings"></iron-icon> <span msg="options">Options</span>
-						</paper-item>
-						<paper-item class="help">
-							<iron-icon icon="help"></iron-icon> <span msg="help">Help</span>
-						</paper-item>
-					</div>
-				</paper-listbox>
-			</div>
-		</app-drawer>
+				</div> -->
+	
 		<app-header-layout>
 			<app-header slot="header">
 				<app-toolbar>
@@ -149,6 +109,9 @@
 					</div>
 				</app-toolbar>
 			</app-header>
+		</app-header-layout>
+		<div class="row">
+			<div class="space"></div>
 			<div id="mainContent">
 				<div id="quickAccessWrapper">
 					<div id="quickAccessHeader" class="middleHeaderWrapper layout horizontal justified">
@@ -169,7 +132,8 @@
 				</div>
 				<div id="files" class="flex"></div>
 			</div>
-		</app-header-layout>
+	
+		</div>
 	</app-drawer-layout>
 
 	<template id="fileContextMenuTemplate">

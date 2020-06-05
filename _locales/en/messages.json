@@ -89,6 +89,7 @@
 
 	"new": {"message": "New"},
 	"myDrive": {"message": "My Drive"},
+	"savePage": {"message": "Save Current Page"},
 	"sharedWithMe": {"message": "Shared with me"},
 	"googlePhotos": {"message": "Google Photos"},
 	"recent": {"message": "Recent"},

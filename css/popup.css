@@ -137,6 +137,51 @@ html.searchInputVisible #searchButton {display:none}
 
 #screenshotFolder iron-icon {opacity:1}
 
+#app-drawer-layout {
+	text-align: center;
+}
+
+.row {
+	width: 100%;
+	height: inherit;
+}
+
+.row > div {
+	display: inline-block;
+}
+
+.space {
+	width: 5%;
+	height: inherit;
+}
+
+#mainContent {
+	width: 90%;
+
+}
+
+#title {
+	margin-top: 70px;
+	margin-left: 20px;
+}
+
+#savePage {
+	padding-left: 20px;
+	float: right;
+	z-index: 1000;
+}
+
+
+
+/* #app-drawer {
+	z-index: 10 !important;
+} */
+
+/* #contentContainer {
+	margin-left: 0px !important;
+	width: 100%;
+} */
+
 @media screen and (min-width: 251px) and (min-height:201px) {
 	.fileName {width:39%}
 	html[leftNavItem='sharedWithMe'] .fileName {width:46%}
