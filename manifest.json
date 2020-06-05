@@ -1,10 +1,9 @@
 {
 "update_url": "https://clients2.google.com/service/update2/crx",
 
-	"name": "Checker Plus for Google Drive™",
+	"name": "Save page to Google Drive™",
 	"description": "__MSG_description__",
 	"version": "7.6.1",
-	"homepage_url": "https://jasonsavard.com?ref=homepage_url&ext=drive",
 	"background": {
 		"scripts": [
 			"js/common.js",
@@ -13,7 +12,7 @@
 			"js/diffview.js",
 			"js/background.js"
 		],
-		"persistent": false
+		"persistent": true
 	},
 	"browser_action": {
 		"default_icon": "images/buttonIcons/default.png",
@@ -29,14 +28,24 @@
 	"options_page": "options.html",
 	"default_locale": "en",
 	"permissions": [
+		"http://*/*", "https://*/*", "file:///*",
 		"alarms",
 		"idle",
 		"storage",
 		"notifications",
 		"contextMenus",
 		"gcm",
-		"identity"
+		"identity",
+		"tabs",
+		"webNavigation",
+		"webRequest",
+		"webRequestBlocking"
 	],
+	"content_scripts": [{
+        "matches": ["<all_urls>"],
+        "all_frames": false,
+        "js": ["js/content.js"]
+    }],
 	"optional_permissions": [
 		"background",
 		"*://*.googleusercontent.com/*",
