@@ -97,6 +97,7 @@ function uploadInputFile(file) {
 			uploadFileParams.name = file.name;
 			uploadFileParams.type = file.type;
 			uploadFileParams.data = this.result.split(",")[1];
+			console.log("parentId-----", parentId);
 			uploadFileParams.parentId = parentId;
 			
 			uploadFile(uploadFileParams).then(function(response) {

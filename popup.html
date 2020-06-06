@@ -25,53 +25,42 @@
 	<div style="position:absolute" tabindex=0></div> <!-- Mac patch because focus was automatically being set on first item and it happened to show a tooltip all the time, so focus on this one instead -->
 
 	<app-drawer-layout responsive-width="200px" fullbleed>
-		<div id="title">
-			<span id="title" class="flex"><img src="images/icon64.png"/> <span>Saved pages in my Google Drive</span>
-				<paper-tooltip msg="openGoogleDrive"></paper-tooltip>
-			</span>
-			<div id="searchWrapper">
-				<paper-icon-button id="back" icon="arrow-back" role="button" aria-label="search" style="vertical-align:top"></paper-icon-button> <input type="input" id="searchInput" msgPlaceholder="search" autocomplete="off">
+		<div class="main_menu">
+			<div class="flex">
+				<iron-icon id="menu" icon="menu" tabindex="0"></iron-icon>
+				<span id="mainTitle" hidden>Save page to Google Drive</span>
+				<paper-tooltip msg="openGoogleDrive" for="mainTitle"></paper-tooltip>
+			</div>
+			<div id="topRight">
+				<paper-icon-button id="newsNotification" icon="av:new-releases" hidden></paper-icon-button>
+				<paper-tooltip for="newsNotification">
+					<div id="newsNotificationReducedDonationMessage" class="hide" style="text-align:center"><span msg="reducedDonationAd_popup">Good news long time user!<br>You can get the latest <span msg="extraFeatures" style="text-transform:lowercase">extra features</span>												for only 50&cent;</span>
+					</div>
+				</paper-tooltip>
+				<!-- <paper-icon-button id="searchButton" msgTitle="search" icon="search"></paper-icon-button> -->
+				<paper-icon-button id="refresh" msgTitle="refresh" icon="refresh"></paper-icon-button>
+				<paper-icon-button id="maximize" msgTitle="openGoogleDrive" icon="open-in-browser"></paper-icon-button>
+				<!-- <paper-menu-button id="optionsMenuButton" horizontal-align="right">
+					<paper-icon-button icon="more-vert" slot="dropdown-trigger" style="display:block" msgTitle="options"></paper-icon-button>
+					<template id="optionsMenuTemplate">
+						<paper-listbox id="optionsMenu" slot="dropdown-content">
+							<paper-icon-item class="options">
+								<iron-icon icon="settings" slot="item-icon"></iron-icon>
+								<span msg="options"></span>
+							</paper-icon-item>
+							<paper-item class="separator"></paper-item>
+							<paper-item class="changelog" msg="changelog">Changelog</paper-item>
+							<paper-item class="contribute" msg="contribute">Contribute</paper-item>
+							<paper-item class="discoverMyApps" msg="discoverMyApps">Discover my apps</paper-item>
+							<paper-item class="aboutMe" msg="aboutMe">About me</paper-item>
+							<paper-item class="help"><span msg="help">help</span></paper-item>
+						</paper-listbox>
+					</template>
+				</paper-menu-button> -->
+				<paper-icon-button class="close" msgTitle="closeEsc" icon="close" style="margin-top: -15px;"></paper-icon-button>
 			</div>
 		</div>
-		<paper-item id="savePage">
-			<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="savePage">Save Current Page</span>
-		</paper-item>
-		<paper-item id="myDrive" style="display:none">
-			<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="myDrive"></span>
-		</paper-item>
-				
-				<!-- <paper-item id="teamDrives" hidden>
-					<iron-icon icon="myIcons:teamDrive"></iron-icon> <span msg="teamDrives">teamdrives</span>
-				</paper-item>
-				<paper-item id="sharedWithMe">
-					<iron-icon icon="social:people"></iron-icon> <span id="sharedWithMeText" msg="sharedWithMe">Shared with Me</span>
-				</paper-item>
-				<paper-item id="recent">
-					<iron-icon icon="schedule"></iron-icon> <span msg="recent">Recent</span>
-				</paper-item> -->
-				<!--paper-item id="googlePhotos">
-					<svg viewBox="0 0 24 24" fill="#777">
-						<path fill-rule="evenodd" clip-rule="evenodd" fill="none" d="M0 0h24v24H0z"></path>
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M6.32 7l-4.45 4.48c-.05.05-.13.18-.13.26 0 .16.1.26.26.26h7c1.14 0 2-.86 2-2V7H6.32zM22 12h-7c-1.14 0-2 .86-2 2v3h4.68l4.45-4.48c.05-.05.13-.18.13-.26 0-.16-.1-.26-.26-.26zM12.52 1.87c-.05-.05-.18-.13-.26-.13-.16 0-.26.1-.26.26v7c0 1.14.86 2 2 2h3V6.32l-4.48-4.45zM10 13H7v4.68l4.48 4.45c.05.05.18.13.26.13.16 0 .26-.1.26-.26v-7c0-1.14-.86-2-2-2z"></path>
-					</svg> <span msg="googlePhotos">Google Photos</span>
-				</paper-item-->
-				<!-- <paper-item id="starred">
-					<iron-icon icon="star"></iron-icon> <span msg="starred">Starred</span>
-				</paper-item>
-				<paper-item id="notifications">
-					<iron-icon icon="social:notifications"></iron-icon> <span id="notificationsText" msg="notifications">notifications</span>
-				</paper-item> -->
-				<!-- <div id="leftNavExtras" hidden>
-					<div class="separator"></div>
-					<paper-item class="options">
-						<iron-icon icon="settings"></iron-icon> <span msg="options">Options</span>
-					</paper-item>
-					<paper-item class="help">
-						<iron-icon icon="help"></iron-icon> <span msg="help">Help</span>
-					</paper-item>
-				</div> -->
-	
-		<app-header-layout>
+		<!-- <app-header-layout>
 			<app-header slot="header">
 				<app-toolbar>
 					<div class="flex">
@@ -109,7 +98,26 @@
 					</div>
 				</app-toolbar>
 			</app-header>
-		</app-header-layout>
+		</app-header-layout> -->
+		<div id="title">
+			<span id="title" class="flex"><img src="images/icon64.png"/> <span>Saved pages in my Google Drive</span>
+				<paper-tooltip msg="openGoogleDrive"></paper-tooltip>
+			</span>
+			<div id="searchWrapper">
+				<paper-icon-button id="back" icon="arrow-back" role="button" aria-label="search" style="vertical-align:top"></paper-icon-button> <input type="input" id="searchInput" msgPlaceholder="search" autocomplete="off">
+			</div>
+		</div>
+		<paper-item class="separator" disabled></paper-item>
+		<paper-item id="newFolder">
+			<iron-icon src="images/google-plus-sign.svg"></iron-icon> <span msg="newFolder">New Folder</span>
+		</paper-item>
+		<paper-item id="savePage">
+			<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="savePage">Save Current Page</span>
+		</paper-item>
+		<paper-item id="myDrive" style="display:none">
+			<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="myDrive"></span>
+		</paper-item>
+	
 		<div class="row">
 			<div class="space"></div>
 			<div id="mainContent">

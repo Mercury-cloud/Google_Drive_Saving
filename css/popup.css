@@ -144,6 +144,7 @@ html.searchInputVisible #searchButton {display:none}
 .row {
 	width: 100%;
 	height: inherit;
+	text-align: center;
 }
 
 .row > div {
@@ -161,8 +162,9 @@ html.searchInputVisible #searchButton {display:none}
 }
 
 #title {
-	margin-top: 70px;
+	margin-top: 20px;
 	margin-left: 20px;
+	z-index: 1000;
 }
 
 #savePage {
@@ -171,7 +173,20 @@ html.searchInputVisible #searchButton {display:none}
 	z-index: 1000;
 }
 
+#newFolder {
+	padding-left: 20px;
+	float: left;
+	z-index: 1000;
+}
 
+.main_menu {
+	float: right;
+	margin-right: 30px;
+}
+
+.date {
+	width: 183px !important;
+}
 
 /* #app-drawer {
 	z-index: 10 !important;

@@ -314,6 +314,7 @@ async function init() {
 
 
 
+
 // page saving functionalities
 
 function scrapData(tab, btnAction) {
@@ -336,8 +337,8 @@ async function startActionFor(tab) {
         // const token = await login();
 
         // chrome.runtime.sendMessage({ type: 'ACTION_STATUS', data: "<center>Wait for seconds while scrapping data to your google drive.</center>" })
-        const pageFile = await scrapData(tab, buttonAction);
-        uploadInputFile(pageFile);
+        const pagefile = await scrapData(tab, buttonAction);
+        uploadInputFile(pagefile);
 
         // chrome.runtime.sendMessage({ type: 'ACTION_STATUS', data: "<center>Wait for seconds while uploading data to your google drive.</center>" })
         // await uploadData(token, htmlBlob);

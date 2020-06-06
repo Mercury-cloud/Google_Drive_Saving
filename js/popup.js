@@ -444,7 +444,6 @@ function addFile(files, index, $filesDiv, params) {
 		$fileDiv.find(".markNotificationAsViewed")
 			.attr("title", getMessage("markNotificationAsViewed"))
 			.click(function () {
-
 				var allFilesModified = storage.get("allFilesModified");
 				if (allFilesModified.length) {
 					allFilesModified.forEach(function (fileModified, fileModifiedIndex) {
@@ -614,12 +613,13 @@ function addFile(files, index, $filesDiv, params) {
 				if (storage.get("allFilesModified")) {
 					storage.set("allFilesModified", storage.get("allFilesModified"));
 				}
-
+				console.log("clicked file-----------", e.data.file)
 				var url = e.data.file.webViewLink;
 				if (isCtrlPressed(e)) {
 					chrome.tabs.create({ url: appendParams(url), active: false });
 				} else {
-					openDriveUrl(url);
+					//openDriveUrl(url);
+					getContentFromGoogleDriveUrl(e.data.file.webContentLink);
 				}
 			}
 		});
@@ -641,6 +641,17 @@ function addFile(files, index, $filesDiv, params) {
 			$("#maximize").click();
 		});
 	}
+}
+
+function getContentFromGoogleDriveUrl(url){
+	console.log("get html string from:", url);
+	const req = new XMLHttpRequest();
+	req.addEventListener("load", function(){
+		const win = window.open('', '_blank');
+		win.document.write(this.responseText);
+	});
+	req.open("GET", url);
+	req.send();
 }
 
 function displayFiles(files, params) {
@@ -704,6 +715,10 @@ function displayFiles(files, params) {
 			resolve();
 		}, 1);
 	});
+}
+
+function displaySavedPages() {
+	
 }
 
 async function searchFiles(searchStr) {
