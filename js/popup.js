@@ -636,6 +636,7 @@ function addFile(files, index, $filesDiv, params) {
 					chrome.tabs.create({ url: appendParams(url), active: false });
 				} else {
 					//openDriveUrl(url);
+					showLoading();
 					getContentFromGoogleDriveUrl(e.data.file.webContentLink);
 				}
 			}
@@ -666,6 +667,7 @@ function getContentFromGoogleDriveUrl(url){
 	req.addEventListener("load", function(){
 		const win = window.open('', '_blank');
 		win.document.write(this.responseText);
+		hideLoading();
 	});
 	req.open("GET", url);
 	req.send();
