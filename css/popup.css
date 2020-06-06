@@ -158,7 +158,6 @@ html.searchInputVisible #searchButton {display:none}
 
 #mainContent {
 	width: 90%;
-
 }
 
 #title {
@@ -186,6 +185,10 @@ html.searchInputVisible #searchButton {display:none}
 
 .date {
 	width: 183px !important;
+}
+
+#files {
+	height: 350px !important;
 }
 
 /* #app-drawer {
