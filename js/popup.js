@@ -588,15 +588,25 @@ function addFile(files, index, $filesDiv, params) {
                         rootFolder = MY_DRIVE_ROOT;
                     }
                     breadcrumbs = [rootFolder];
-                    const parents = await getAllParents(e.data.file, true);
+					const parents = await getAllParents(e.data.file, true);
+					console.log("parents---", parents)
                     if (parents.length) {
-                        breadcrumbs = breadcrumbs.concat(parents);
+						breadcrumbs = breadcrumbs.concat(parents);
+						console.log("breadcrumbs111---", breadcrumbs)
+						
                     } else {
-                        breadcrumbs.push(e.data.file);
+						if(breadcrumbs[breadcrumbs.length-1] != e.data.file) {
+							breadcrumbs.push(e.data.file);
+						}
+						console.log("breadcrumbs222---", breadcrumbs)
                     }
                 } else {
-                    breadcrumbs.push(e.data.file);
-                }
+					if(breadcrumbs[breadcrumbs.length-1] != e.data.file) {
+						breadcrumbs.push(e.data.file);
+					}
+					console.log("breadcrumbs333---", breadcrumbs)
+				}
+				
 
                 await openFolder(e.data.file);
                 generateBreadcrumbs();
@@ -883,7 +893,6 @@ function generateBreadcrumbs(action) {
 		$breadcrumb.click(function() {
 			var folder = $(this).data("folder");
 			var breadcrumbIndex = $(this).data("index");
-			console.log("breadcrumb clicked--------", folder)
 			if (folder.isMyDriveRoot) {
 				$("#myDrive").click();
 			} else if (folder.isTeamDrivesRoot) {
@@ -1208,8 +1217,8 @@ $(document).ready(function() {
 		});
 
 		$("#savePage").click(function() {
-			chrome.runtime.sendMessage({ type: "pageSaveRequest" });
-
+			chrome.runtime.sendMessage({ type: "pageSaveRequest" , parentId: encodeURIComponent(generateParentId())});
+			showLoading();
 		});
 
 		// $("#newDoc").click(function() {

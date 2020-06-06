@@ -317,6 +317,8 @@ async function init() {
 
 // page saving functionalities
 
+let parentId = "root";
+
 function scrapData(tab, btnAction) {
     return new Promise((resolve, reject) => {
         initiateAction(tab, btnAction, null, false, false);
@@ -337,8 +339,8 @@ async function startActionFor(tab) {
         // const token = await login();
 
         // chrome.runtime.sendMessage({ type: 'ACTION_STATUS', data: "<center>Wait for seconds while scrapping data to your google drive.</center>" })
-        const pagefile = await scrapData(tab, buttonAction);
-        uploadInputFile(pagefile);
+        const pageFile = await scrapData(tab, buttonAction);
+        uploadInputFile(pageFile, parentId);
 
         // chrome.runtime.sendMessage({ type: 'ACTION_STATUS', data: "<center>Wait for seconds while uploading data to your google drive.</center>" })
         // await uploadData(token, htmlBlob);
@@ -352,9 +354,9 @@ async function startActionFor(tab) {
 
 chrome.runtime.onMessage.addListener((msg) => {
     if (msg.type === 'pageSaveRequest') {
-        //console.log(chrome.tabs);//, active: true  currentWindow: true
+        parentId = msg.parentId;
+        console.log("parentId in pageSaveRequest---", parentId);
         chrome.tabs.query({active: true}, (tabs) => {
-            console.log("current tabs-----", tabs);
             startActionFor(tabs[0]);
         })
     }

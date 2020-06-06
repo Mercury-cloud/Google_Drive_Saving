@@ -1740,25 +1740,27 @@ function checkResources()
     function someResourcesNotLoaded()
     {
         console.log("show unsaved panel--------");
-        showMessage("Some resources could not be loaded","Save",
-            failcount + " of " + resourceLocation.length + " resources could not be loaded.\n\n" +
-            "It may be possible to load these resources by trying these suggestions:\n\n" +
-            "    •  Scroll to the bottom of the page before saving.\n" +
-            "    •  Use normal browing instead of private browsing.\n" +
-            "    •  Enable the 'Allow passive mixed content' option.\n" +
-            "    •  Select one of the 'Send referer header with origin ...' options.\n" +
-            "    •  Increase the 'Maximum time for loading a resource' option value.",
-            function savecontinue()
-            {
-                if (showURLList) showUnsavedResources();
-                else enterComments();
-            },
-            function savecancel()
-            {
-                chrome.runtime.sendMessage({ type: "setSaveState", savestate: -1 });
+        if (showURLList) showUnsavedResources();
+        else enterComments();
+        // showMessage("Some resources could not be loaded","Save",
+        //     failcount + " of " + resourceLocation.length + " resources could not be loaded.\n\n" +
+        //     "It may be possible to load these resources by trying these suggestions:\n\n" +
+        //     "    •  Scroll to the bottom of the page before saving.\n" +
+        //     "    •  Use normal browing instead of private browsing.\n" +
+        //     "    •  Enable the 'Allow passive mixed content' option.\n" +
+        //     "    •  Select one of the 'Send referer header with origin ...' options.\n" +
+        //     "    •  Increase the 'Maximum time for loading a resource' option value.",
+        //     function savecontinue()
+        //     {
+        //         if (showURLList) showUnsavedResources();
+        //         else enterComments();
+        //     },
+        //     function savecancel()
+        //     {
+        //         chrome.runtime.sendMessage({ type: "setSaveState", savestate: -1 });
                 
-                chrome.runtime.sendMessage({ type: "saveDone", external: externalSave, success: false });
-            });
+        //         chrome.runtime.sendMessage({ type: "saveDone", external: externalSave, success: false });
+        //     });
     }
     
     function showUnsavedResources()

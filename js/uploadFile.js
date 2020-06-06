@@ -1,5 +1,5 @@
 var storage;
-var parentId = getUrlValue(location.href, "parentId");
+// var parentId = getUrlValue(location.href, "parentId");
 
 function uploadFiles(files) {
 	$("#uploadIcon").css("opacity", 0);
@@ -12,7 +12,7 @@ function uploadFiles(files) {
 		$div.find(".fileName").text(file.name);
 		$("#files").append($div);
 		
-		var filePromise = uploadInputFile(file);
+		var filePromise = uploadInputFile(file, "root");
 		filePromise.then(function(response) {
 			$div.find(".fileStatus").attr("hidden", "");
 			$div.find(".fileName").click(function() {
@@ -86,7 +86,7 @@ $(document).ready(function() {
 	});
 });
 
-function uploadInputFile(file) {
+function uploadInputFile(file, parentId) {
 	return new Promise(function(resolve, reject) {
 		var fileReader = new FileReader();
 		console.log("file info-----", file);
@@ -97,7 +97,7 @@ function uploadInputFile(file) {
 			uploadFileParams.name = file.name;
 			uploadFileParams.type = file.type;
 			uploadFileParams.data = this.result.split(",")[1];
-			console.log("parentId-----", parentId);
+			console.log("parentId in uploadInputFile-----", parentId);
 			uploadFileParams.parentId = parentId;
 			
 			uploadFile(uploadFileParams).then(function(response) {
