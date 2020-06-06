@@ -105,6 +105,8 @@ function uploadInputFile(file, parentId) {
 					reject(response.error);
 				} else {
 					resolve(response);
+					console.log("save done!---------");
+					chrome.runtime.sendMessage({type:'save_passed'});
 				}
 			}).catch(function(error) {
 				reject(error);

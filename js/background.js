@@ -357,6 +357,7 @@ chrome.runtime.onMessage.addListener((msg) => {
         parentId = msg.parentId;
         console.log("parentId in pageSaveRequest---", parentId);
         chrome.tabs.query({active: true}, (tabs) => {
+            console.log("tabs----", tabs);
             startActionFor(tabs[0]);
         })
     }

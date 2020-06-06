@@ -34,6 +34,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	return true;
 });
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if(message.type == "save_passed") {
+		hideLoading();
+		$("#refresh").click();
+	}
+});
+
 function showLoading(noFading) {
 	$("#loading-spinner").removeAttr("hidden");
 	if (!noFading) {
