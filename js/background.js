@@ -233,7 +233,7 @@ if (chrome.runtime.onInstalled) {
                 var options = {
                         type: "basic",
                         title: getMessage("extensionUpdated"),
-                        message: "Checker Plus for Google Drive " + chrome.runtime.getManifest().version,
+                        message: "Save Pages to Google Drive " + chrome.runtime.getManifest().version,
                         iconUrl: "images/icon128.png",
                         buttons: [{title: getMessage("seeUpdates")}]
                 }
