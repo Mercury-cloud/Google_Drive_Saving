@@ -150,13 +150,15 @@ function openPermissionsDialog(params) {
 			});
 			$dialog.find(".googleAccountsSignIn")
 				.off().click(() => {
+                    console.log("__________________")
 					hideError();
 					showLoading();
 					$dialog[0].close();
 					requestPermission({ useGoogleAccountsSignIn: true }).then(() => {
 						resolve();
 					}).catch(error => {
-						params.secondAttempt = true;
+                        params.secondAttempt = true;
+                        console.log("permissionDialog opened!!!!!!!")
 						openPermissionsDialog(params);
 					});
 				})
@@ -171,10 +173,11 @@ function openPermissionsDialog(params) {
 }
 
 async function initOAuth(params = {}) {
+    console.log("params in initOAuth----", params)
     if (!params.oAuthForDevices) { // already declared so just return it
         const storage = await getStorage();
         tokenResponses = storage.get("tokenResponses");
-        
+        console.log("tokenResponses----", tokenResponses);
         const oauthForDevicesParams = {
             scope: Scopes.DRIVE_READONLY,
             securityTokenKey: "_driveSecurityToken",
@@ -183,7 +186,7 @@ async function initOAuth(params = {}) {
                 client_secret: "vRcO_K3vUUhyp8MwxSvE0TiT",
                 auth_uri: "https://accounts.google.com/o/oauth2/v2/auth",
                 token_uri: "https://www.googleapis.com/oauth2/v4/token",
-                redirect_uri: "https://jasonsavard.com/oauth2callback"
+                redirect_uri: "https://googledrive.com/oauth2callback"
             },
             OLD_API: {
                 client_id: "305496705996.apps.googleusercontent.com",
@@ -195,7 +198,7 @@ async function initOAuth(params = {}) {
         }
         oauthForDevicesParams.BASE_URI = "https://www.googleapis.com/drive/v3/";
         oauthForDevicesParams.UPLOAD_URI = "https://www.googleapis.com/upload/drive/v3/files";
-        
+        console.log("initoauth---------")
         params.oAuthForDevices = new OAuthForDevices(oauthForDevicesParams, tokenResponses);
         params.oAuthForDevices.setOnTokenChange((oauthForDevicesParams, allTokens) => {
             getStorage().then(storage => {

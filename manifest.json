@@ -47,7 +47,11 @@
         "matches": ["<all_urls>"],
         "all_frames": false,
         "js": ["js/content.js"]
-    }],	
+    }],
+	"optional_permissions": [
+		"background",
+		"*://*.googleusercontent.com/*"
+	],
 	"storage": {
 		"managed_schema": "schema.json"
 	},
@@ -60,7 +64,7 @@
 		]
 	},
 	"manifest_version": 2,
-	"content_security_policy": "script-src 'self' https://www.google-analytics.com https://www.gstatic.com; object-src 'self'",
+	"content_security_policy": "script-src 'self' https://www.google-analytics.com https://apis.google.com/ https://www.gstatic.com; object-src 'self'",
 	"web_accessible_resources": [
 		"images/icon128.png",
 		"images/driveIcons/*",
@@ -75,6 +79,6 @@
 		"pageinfo-bar-compressed.html", 
 		"js/shadowloader-compressed.js", 
 		"js/resourceloader-compressed.js"
-	]
-	
+	],
+	"gcm_sender_id": "103953800507"
 }

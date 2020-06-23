@@ -110,12 +110,15 @@
 		<paper-item class="separator" disabled></paper-item>
 		<paper-item id="newFolder">
 			<iron-icon src="images/google-plus-sign.svg"></iron-icon> <span msg="newFolder">New Folder</span>
+  <input type="button" id="authorizeButton" style="display: none" value="Authorize" />
+
 		</paper-item>
 		<paper-item id="savePage">
 			<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="savePage">Save Current Page</span>
 		</paper-item>
 		<paper-item id="myDrive" style="display:none">
 			<iron-icon icon="myIcons:googleDriveIcon"></iron-icon> <span msg="myDrive"></span>
+
 		</paper-item>
 	
 		<div class="row">
@@ -256,6 +259,8 @@
 	<script src="js/common.js"></script>
 	<script src="js/extensionCommon.js"></script>
 	<script src="js/checkerPlusForDrive.js"></script>
+	<script src="js/client.js"></script>
+
 	<script src="js/popup.js"></script>
 </body>
 </html>

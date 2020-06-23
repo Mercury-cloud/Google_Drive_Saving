@@ -9,6 +9,56 @@ var TEAM_DRIVES_ROOT = { name: getMessage("teamDrives"), isTeamDrivesRoot: true 
 var SHARED_WITH_ME_ROOT = { name: getMessage("sharedWithMe"), isSharedWithMeRoot: true };
 var fromToolbar = true;
 
+
+	var FOLDER_ID = '.1XTDnXC7z6zhDMvwx3WIP3NulxdevNFrU';    // the folder files reside in 1XTDnXC7z6zhDMvwx3WIP3NulxdevNFrU
+  var CLIENT_ID = '953182066388-4qoginn7bh8pe790u4jqg4n06cfobp5m.apps.googleusercontent.com';
+  var SCOPE =    //'https://www.googleapis.com/auth/drive'; 
+  [
+    'https://www.googleapis.com/auth/drive.file',     // for description, 
+  ];
+  function rsvpCB(resp) {
+	  console.log("resp-----", resp)
+    var picAlbumLst = '<ul>\n';
+    for (i=0; i<resp.items.length; i++) 
+      picAlbumLst += (
+      '  <li>'+resp.items[i].id+',&nbsp;'+resp.items[i].title+',&nbsp;'+resp.items[i].description+'</li>\n');
+    picAlbumLst += "</ul>\n";
+    $('#mainContent').append(picAlbumLst);
+  }
+  function rqstCB() {   //test @ https://developers.google.com/drive/v2/reference/files/list
+    var rv = gapi.client.drive.files.list({
+      'q': '"'+FOLDER_ID+'" in parents and trashed = false',
+      'fields' : 'items(id,title,description)'   //'items(id,title,description,indexableText)'   
+    }).execute(rsvpCB);
+  }
+  // authorization server reply
+  function onAuthResult(authResult) {
+    var authButton = document.getElementById('authorizeButton');
+    authButton.style.display = 'none';
+    if (authResult && !authResult.error) {  // access token successfully retrieved
+	  gapi.client.load('drive', 'v2', rqstCB); 
+	  alert("login success!-----" + authResult.message)
+	    
+	} else {  // no access token retrieved, force the authorization flow.
+		alert("login error!-----")
+		
+      authButton.style.display = 'block';
+      authButton.onclick = function() {
+        checkAuth(false);
+      }
+    }
+  }
+  
+  // check if the current user has authorized the application.
+  function checkAuth(bNow) {
+    gapi.auth.authorize({'client_id':CLIENT_ID, 'scope':SCOPE, 'immediate':bNow}, onAuthResult);
+  }
+  // called when the client library is loaded, look below
+//   function onLoadCB() { 
+//     checkAuth(true); 
+//   }
+
+
 async function afterAcccessGranted() {
 	storage = await getStorage();
     console.log("afterAcccessGranted");
@@ -777,6 +827,7 @@ async function searchFiles(searchStr) {
 }
 
 function performCommand(params) {
+	
 	return new Promise((resolve, reject) => {
 		showLoading();
 		
@@ -815,9 +866,10 @@ function performCommand(params) {
 						showError(errorObj);
 					}
 					requestPermissionsParams.lastCommand = params.lastCommand;
-					openPermissionsDialog(requestPermissionsParams).then(() => {
-						afterAcccessGranted();
-					});
+					checkAuth(true);
+					// openPermissionsDialog(requestPermissionsParams).then(() => {
+					// 	afterAcccessGranted();
+					// });
 				} else if (errorObj.code == 500) {
 					showError(errorObj);
 				} else if (errorObj.code == 0) {
@@ -826,9 +878,10 @@ function performCommand(params) {
 					console.log("message error", errorObj);
 					showError(errorObj, {
 						onClick: function() {
-							openPermissionsDialog().then(() => {
-								afterAcccessGranted();
-							});
+							checkAuth(true)
+							// openPermissionsDialog().then(() => {
+							// 	afterAcccessGranted();
+							// });
 						},
 						text: getMessage("grantAccess")
 					});
@@ -1611,19 +1664,21 @@ $(document).ready(function() {
                     }
                 }).catch(error => {
                     if (error.code == 400 || error.code == 401) {
-                        showError("You need to re-grant access, it was probably revoked");
-                        openPermissionsDialog().then(() => {
-                            afterAcccessGranted();
-                        });
+						showError("You need to re-grant access, it was probably revoked");
+						checkAuth(true)
+                        // openPermissionsDialog().then(() => {
+                        //     afterAcccessGranted();
+                        // });
                     } else {
                         showError(error);
                     }
                 });
             }
         } else {
-            openPermissionsDialog().then(() => {
-                afterAcccessGranted();
-            });
+			checkAuth(true)
+            // openPermissionsDialog().then(() => {
+            //     afterAcccessGranted();
+            // });
         }
 
         // patch

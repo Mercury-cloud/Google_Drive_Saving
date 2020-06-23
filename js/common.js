@@ -1649,7 +1649,7 @@ function Controller() {
 	Controller.FULLPATH_TO_PAYMENT_FOLDERS = "https://apps.jasonsavard.com/";
 	
 	// jasonsavard.com server
-	//Controller.FULLPATH_TO_PAYMENT_FOLDERS = "https://jasonsavard.com/apps.jasonsavard.com/";
+	Controller.FULLPATH_TO_PAYMENT_FOLDERS = "https://jasonsavard.com/apps.jasonsavard.com/";
 
 	// internal only for now
 	async function callAjaxController(params) {
@@ -1914,8 +1914,8 @@ function OAuthForDevices(defaultParams, tokenResponses) {
 		return new Promise((resolve, reject) => {
             const scopes = params.scopes || defaultParams.scope;
             const stateParams = chrome.runtime.getURL("oauth2callback.html?security_token=" + that.generateSecurityToken()) + "&scopes=" + scopes;
-
 			var url = defaultParams.API.auth_uri + "?response_type=code&client_id=" + defaultParams.API.client_id + "&redirect_uri=" + defaultParams.API.redirect_uri + "&scope=" + encodeURIComponent(scopes) + "&state=" + encodeURIComponent(stateParams);
+			console.log("url=====", url)
 			if (params.email) {
 				url += "&login_hint=" + encodeURIComponent(params.email);
 			} else {
@@ -1937,6 +1937,7 @@ function OAuthForDevices(defaultParams, tokenResponses) {
 				});
 			} else {
 				var newWindow = openWindowInCenter(url, 'oauth', 'toolbar=0,scrollbars=0,menubar=0,resizable=0', width, height);
+				console.log("new Window called!------");
 				resolve(newWindow);
 			}
 			
@@ -2018,6 +2019,7 @@ function OAuthForDevices(defaultParams, tokenResponses) {
 
 	async function ensureToken(tokenResponse) {
         if (tokenResponse.chromeProfile) {
+
             const getAuthTokenParams = {
                 interactive: false,
                 scopes: (tokenResponse.scopes || Scopes.DRIVE_READWRITE).split(" ") // legacy default to initial full scope (before i reduced them)
@@ -2075,6 +2077,7 @@ function OAuthForDevices(defaultParams, tokenResponses) {
 	}
 
     function getAuthToken(params) {
+		console.log("authtoken called!------")
         return new Promise((resolve, reject) => {
             chrome.identity.getAuthToken(params, token => {
                 if (chrome.runtime.lastError) {
@@ -2088,7 +2091,8 @@ function OAuthForDevices(defaultParams, tokenResponses) {
     }
 
 	this.send = async function(params) {
-        var tokenResponse = that.findTokenResponse(params);		
+		var tokenResponse = that.findTokenResponse(params);
+		console.log("params -------- send funciton", params);		
         if (tokenResponse) {
             await ensureToken(tokenResponse);
             const response = await sendOAuthRequest(params);
@@ -2118,7 +2122,7 @@ function OAuthForDevices(defaultParams, tokenResponses) {
 	}
 	
 	this.getAccessToken = async function(params) {
-        console.log("get access token");
+        console.log("get access token------------------");
         let tokenResponse;
         
         if (params.code) {
